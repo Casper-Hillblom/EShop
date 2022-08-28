@@ -14,7 +14,7 @@ namespace EShop.Services
             _context = context;
         }
 
-        public async Task<Order> AddPrdouctToOrderAsync(OrderListRequest request)
+        public async Task<OrderEntity> AddPrdouctToOrderAsync(OrderListRequest request)
         {
             if (await _context.Orders.AnyAsync(x => x.Id == request.OrderId))
             {
@@ -33,7 +33,7 @@ namespace EShop.Services
                     _context.Items.Add(orderList);
                     await _context.SaveChangesAsync();
 
-                    await GetOrderAsync(request.OrderId); //Får se hur detta blir
+                    return await GetOrderAsync(request.OrderId); //Får se hur detta blir
                 }
             }
             return null!;
@@ -41,7 +41,7 @@ namespace EShop.Services
 
         public async Task<Order> CreateOrderAsync(OrderRequest request)
         {
-            if (!await _context.Users.AnyAsync(x => x.Email == request.UserEmail))
+            if (await _context.Users.AnyAsync(x => x.Email == request.UserEmail))
             {
                 var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == request.UserEmail);
 
