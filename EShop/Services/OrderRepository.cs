@@ -14,6 +14,31 @@ namespace EShop.Services
             _context = context;
         }
 
+        public async Task<Order> AddPrdouctToOrderAsync(OrderListRequest request)
+        {
+            if (await _context.Orders.AnyAsync(x => x.Id == request.OrderId))
+            {
+                var item = await _context.Products.FirstOrDefaultAsync(x => x.Name == request.ProductName);
+
+                if (item != null)
+                {
+                    var orderList = new OrderList()
+                    {
+                        OrderId = request.OrderId,
+                        ProductName = request.ProductName,
+                        Quantity = request.Quantity,
+                        ProductNumber = item.ArticleNumber
+                    };
+
+                    _context.Items.Add(orderList);
+                    await _context.SaveChangesAsync();
+
+                    await GetOrderAsync(request.OrderId); //Får se hur detta blir
+                }
+            }
+            return null!;
+        }
+
         public async Task<Order> CreateOrderAsync(OrderRequest request)
         {
             if (!await _context.Users.AnyAsync(x => x.Email == request.UserEmail))

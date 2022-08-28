@@ -5,6 +5,7 @@ namespace EShop.Services
 {
     public interface IOrderRepository
     {
+        public Task<Order> AddPrdouctToOrderAsync(OrderListRequest request);
         public Task<Order> CreateOrderAsync(OrderRequest request);
         public Task<OrderEntity> GetOrderAsync(int id);
         public Task<IEnumerable<OrderEntity>> GetAllOrdersAsync();

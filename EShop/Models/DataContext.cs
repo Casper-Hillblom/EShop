@@ -19,5 +19,6 @@ namespace EShop.Models
         public virtual DbSet<ProductEntity> Products { get; set; } = null!;
         public virtual DbSet<OrderEntity> Orders { get; set; } = null!;
         public virtual DbSet<CategoryEntity> Categories { get; set; } = null!;
+        public virtual DbSet<OrderList> Items { get; set; } = null!;
     }
 }
