@@ -17,9 +17,11 @@ namespace EShop.Models.Order
 
         [Required]
         public int UserId { get; set; }
-        public UserEntity User { get; set; } = null!;
 
-        public virtual ICollection<ProductEntity> Products { get; set; } = null!;
+        public virtual ICollection<OrderList> OrderList { get; set; } = null!;
+        //public UserEntity User { get; set; } = null!;
+
+        //public virtual ICollection<ProductEntity> Products { get; set; } = null!;
         //Hur många av varje??
     }
 }

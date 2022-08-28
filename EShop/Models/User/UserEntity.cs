@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace EShop.Models.User
 {
@@ -23,9 +26,37 @@ namespace EShop.Models.User
         public int Number { get; set; }
 
         [Required]
-        private byte[] PHash { get; set; } = null!;
+        public string Password { get; set; } = null!;
 
-        [Required]
-        private byte[] PSalt { get; set; } = null!;
+        //[Required]
+        //public byte[] PHash { get; private set; } = null!;
+
+        //[Required]
+        //public byte[] PSalt { get; private set; } = null!;
+
+        //public void CreateSecurePassword(string password)
+        //{
+        //    using var key = new HMACSHA512();
+        //    PSalt = key.Key;
+        //    PHash = key.ComputeHash(Encoding.UTF8.GetBytes(password));
+        //    key.Clear();
+        //}
+
+        //public bool CheckPassword(string password)
+        //{
+        //    using (var key = new HMACSHA512(PSalt))
+        //    {
+        //        var hash = key.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+        //        for (int i = 0; i < hash.Length; i++)
+        //        {
+        //            if (hash[i] != PHash[i])
+        //            {
+        //                return false;
+        //            }
+        //        }
+        //    }
+        //    return true;
+        //}
     }
 }

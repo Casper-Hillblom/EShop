@@ -12,6 +12,6 @@
 
         public int Number { get; set; }
 
-        public string? Password { get; set; } = null!; //Använda detta på något sätt
+        public string Password { get; set; } = null!; //Använda detta på något sätt
     }
 }

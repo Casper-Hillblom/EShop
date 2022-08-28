@@ -8,6 +8,9 @@ namespace EShop.Models.Product
         public int Id { get; set; }
 
         [Required]
+        public int ArticleNumber { get; set; }
+
+        [Required]
         public string Name { get; set; } = null!;
 
         [Required]
@@ -18,6 +21,7 @@ namespace EShop.Models.Product
 
         [Required]
         public int CategoryId { get; set; }
+
         public CategoryEntity Category { get; set; } = null!;
     }
 }
